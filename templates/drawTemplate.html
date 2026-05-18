@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drawpage</title>
+    <link href="https://redesigned-garbanzo-4j5j65x45pjwfqv64-5000.app.github.dev/static/styleDraw.css" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <div id="colorSelector">
+            <button type="button" onclick="setColor(this)" class="buttons" id="B-black"></button>
+            <button type="button" onclick="setColor(this)" class="buttons" id="B-red"></button>
+            <button type="button" onclick="setColor(this)" class="buttons" id="B-green"></button>
+            <button type="button" onclick="setColor(this)" class="buttons" id="B-blue"></button>
+            <button type="button" onclick="setColor(this)" class="buttons" id="B-bisque"></button>
+            <button type="button" onclick="smallerStroke()" id="B-minus">-</button>
+            <button type="button" onclick="biggerStroke()" id="B-plus">+</button>
+            <p>Stroke size: <b id="strokeText">4</b></p>
+            <a href="https://redesigned-garbanzo-4j5j65x45pjwfqv64-5000.app.github.dev/">Return Homepage</a>
+        </div>
+        <div id="canvasContainer">
+            <canvas id="myCanvas" width="200" height="100"></canvas>
+        </div>
+    </div>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var isDrawing = false;
+        var drawColor = "#000000";
+        var strokeSize = 4;
+
+        
+
+        // Start drawing if the mouse is down
+        canvas.addEventListener('mousedown', () => {
+            isDrawing = true;
+        });
+        // Stop drawing if the mouse is up
+        canvas.addEventListener('mouseup', () => {
+            isDrawing = false;
+        });
+        
+        // Add an event listener to the canvas for when the user moves the mouse over it and the mouse is down
+        canvas.addEventListener('mousemove', (event) => {
+            var ctx = canvas.getContext('2d');
+            // If the mouse button is down
+            if (isDrawing) {
+                // Set color of future rectangle
+                ctx.fillStyle = drawColor;
+                // Put the rectangle on the canvas at the coordinates of the mouse
+                let xOffset = canvas.getBoundingClientRect().left;
+                let yOffset = canvas.getBoundingClientRect().top;
+                
+                ctx.fillRect(event.clientX - xOffset, event.clientY - yOffset, strokeSize, strokeSize);
+            };
+        });
+
+        // Fixes the canvas size to the size of the screen
+        function resizeCanvas() {
+            canvas.width = canvas.parentElement.clientWidth;
+            canvas.height = canvas.parentElement.clientHeight;
+        };
+        resizeCanvas();
+        // Calls the resizeCanvas() function when the window is resized, sadly wipes all that has been drawn too
+        window.addEventListener("resize", resizeCanvas);
+
+        // Changes the color of your stroke to the color of the button pressed
+        function setColor(colorButton) {
+            drawColor = window.getComputedStyle(colorButton).backgroundColor;
+            // Changes border color to a brighter green for the button pressed while reseting the others
+            document.querySelectorAll(".buttons").forEach(button => {
+                if (button !== colorButton) {
+                    button.style.borderColor = "rgb(0, 48, 8)";
+                } else {
+                    button.style.borderColor = "rgb(0, 200, 8)";
+                };
+            });
+        };
+        // Sets the border color to selected for the initial color (black)
+        setColor(document.getElementById("colorSelector").children[0]);
+
+        // Makes the rectangle drawn at the cursor smaller
+        function smallerStroke() {
+            if (strokeSize > 1) {
+                strokeSize -= 1;
+                document.getElementById("strokeText").textContent = strokeSize;
+            };
+        };
+        // Makes the rectangle drawn at the cursor bigger
+        function biggerStroke() {
+            if (strokeSize < 1001) {
+                strokeSize += 1;
+                document.getElementById("strokeText").textContent = strokeSize;
+            };
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+#container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+html body {
+    margin: 0px;
+}
+#colorSelector {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: darkolivegreen;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+#colorSelector button {
+    margin-left: 3vw;
+    border: 0.2vw;
+    border-style: dashed;
+    border-color: rgb(0, 48, 8);
+    width: 3vw;
+    height: 3vw;
+    cursor: pointer;
+}
+#colorSelector p {
+    margin-left: 3vw;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 4vw;
+    height: 3vw;
+    font-size: 1vw;
+}
+#colorSelector a {
+    margin-left: 45vw;
+    width: 3vw;
+    height: 3vw;
+    font-size: 1vw;
+}
+#canvasContainer {
+    background-color: bisque;
+    height: 100%;
+}
+
+
+#B-black {
+    background-color: black;
+}
+#B-red {
+    background-color: red;
+}
+#B-green {
+    background-color: rgb(0, 255, 0);
+}
+#B-blue {
+    background-color: blue;
+}
+#B-bisque {
+    background-color: bisque;
+}
+#B-minus {
+    background-color: green;
+    font-size: 1.5vw;
+}
+#B-plus {
+    background-color: green;
+    font-size: 1.5vw;
+}
