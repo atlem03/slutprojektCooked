@@ -29,19 +29,18 @@
         var drawColor = "#000000";
         var strokeSize = 4;
 
-        
 
         // Start drawing if the mouse is down
-        canvas.addEventListener('mousedown', () => {
+        canvas.addEventListener("mousedown", () => {
             isDrawing = true;
         });
         // Stop drawing if the mouse is up
-        canvas.addEventListener('mouseup', () => {
+        canvas.addEventListener("mouseup", () => {
             isDrawing = false;
         });
         
         // Add an event listener to the canvas for when the user moves the mouse over it and the mouse is down
-        canvas.addEventListener('mousemove', (event) => {
+        canvas.addEventListener("mousemove", (event) => {
             var ctx = canvas.getContext('2d');
             // If the mouse button is down
             if (isDrawing) {
@@ -50,10 +49,10 @@
                 // Put the rectangle on the canvas at the coordinates of the mouse
                 let xOffset = canvas.getBoundingClientRect().left;
                 let yOffset = canvas.getBoundingClientRect().top;
-                
                 ctx.fillRect(event.clientX - xOffset, event.clientY - yOffset, strokeSize, strokeSize);
             };
         });
+
 
         // Fixes the canvas size to the size of the screen
         function resizeCanvas() {
@@ -63,6 +62,7 @@
         resizeCanvas();
         // Calls the resizeCanvas() function when the window is resized, sadly wipes all that has been drawn too
         window.addEventListener("resize", resizeCanvas);
+
 
         // Changes the color of your stroke to the color of the button pressed
         function setColor(colorButton) {
@@ -78,6 +78,7 @@
         };
         // Sets the border color to selected for the initial color (black)
         setColor(document.getElementById("colorSelector").children[0]);
+
 
         // Makes the rectangle drawn at the cursor smaller
         function smallerStroke() {
